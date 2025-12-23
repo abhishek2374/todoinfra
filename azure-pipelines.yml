@@ -9,6 +9,7 @@ trigger:
 pool:
   name: agentpool
 
+
 stages:
   - stage: terraformInstall
     displayName: terraform install 
@@ -22,6 +23,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
           backendServiceArm: 'practice_23-12-25'
           backendAzureRmStorageAccountName: 'abhi_stg_be_state_rg'
           backendAzureRmContainerName: 'todoinfrabestate'
@@ -31,11 +33,13 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'validate'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
 
       - task: TerraformTask@5
         inputs:
           provider: 'azurerm'
           command: 'plan'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
           environmentServiceNameAzureRM: 'practice_23-12-25'
 
 
