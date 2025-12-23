@@ -15,6 +15,17 @@ stages:
     jobs: 
     - job: install
       steps:
-      
+      - task: TerraformInstaller@1
+        inputs:
+          terraformVersion: 'latest'
+      - task: TerraformTask@5
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          backendServiceArm: 'practice_23-12-25'
+          backendAzureRmStorageAccountName: 'abhi_stg_be_state_rg'
+          backendAzureRmContainerName: 'todoinfrabestate'
+          backendAzureRmKey: 'dev.terraform.tfstate'
+
 
   
