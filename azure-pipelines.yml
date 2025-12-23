@@ -20,6 +20,7 @@ stages:
         inputs:
           terraformVersion: 'latest'
       - task: TerraformTask@5
+        displayName: init
         inputs:
           provider: 'azurerm'
           command: 'init'
@@ -30,12 +31,14 @@ stages:
           backendAzureRmKey: 'dev.terraform.tfstate'
 
       - task: TerraformTask@5
+        displayName: validate      
         inputs:
           provider: 'azurerm'
           command: 'validate'
           workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
 
       - task: TerraformTask@5
+        displayName: plan      
         inputs:
           provider: 'azurerm'
           command: 'plan'
