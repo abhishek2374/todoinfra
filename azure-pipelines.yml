@@ -26,9 +26,9 @@ stages:
           command: 'init'
           workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
           backendServiceArm: 'practice_23-12-25'
-          backendAzureRmStorageAccountName: 'abhi_stg_be_state_rg'
-          backendAzureRmContainerName: 'todoinfrabestate'
-          backendAzureRmKey: 'dev.terraform.tfstate'
+          backendAzureRmStorageAccountName: 'todoinfrabestate'
+          backendAzureRmContainerName: 'terraformstate'
+          backendAzureRmKey: 'terraform.tfstate'
 
       - task: TerraformTask@5
         displayName: validate      
