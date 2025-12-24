@@ -25,7 +25,9 @@ stages:
           exit /b 0
         displayName: Terraform linting
         workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
-                  
+
+      
+
       - task: TerraformTask@5
         displayName: init
         inputs:
