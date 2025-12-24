@@ -24,7 +24,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+          workingDirectory: '$(System.DefaultWorkingDirectory)'
           backendServiceArm: 'practice_23-12-25'
           backendAzureRmStorageAccountName: 'abhi_stg_be_state_rg'
           backendAzureRmContainerName: 'todoinfrabestate'
@@ -35,14 +35,14 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'validate'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+          workingDirectory: '$(System.DefaultWorkingDirectory)'
 
       - task: TerraformTask@5
         displayName: plan      
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/environment/dev'
+          workingDirectory: '$(System.DefaultWorkingDirectory)'
           environmentServiceNameAzureRM: 'practice_23-12-25'
 
 
