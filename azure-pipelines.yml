@@ -19,6 +19,14 @@ stages:
       - task: TerraformInstaller@1
         inputs:
           terraformVersion: 'latest'
+    
+      - script: |
+          where tflint
+          tflint --version
+          tflint --recursive --format junit > tflint-report.xml
+        displayName: Terraform linting
+        workingDirectory: '$(System.DefaultWorkingDirectory)/environments/dev'
+                  
       - task: TerraformTask@5
         displayName: init
         inputs:
@@ -29,10 +37,6 @@ stages:
           backendAzureRmStorageAccountName: 'todoinfrabestate'
           backendAzureRmContainerName: 'terraformstate'
           backendAzureRmKey: 'terraform.tfstate'
-
-      - script: 'tflint --recursive /f junit > tflint-report.xml'
-        displayName: linting
-        workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
 
       - task: TerraformTask@5
         displayName: validate      
