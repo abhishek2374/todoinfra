@@ -14,7 +14,7 @@ stages:
   - stage: terraformInstall
     displayName: terraform install 
     jobs: 
-    - job: install
+    - job: terraform_install_init_validate_plan
       steps:
       - task: TerraformInstaller@1
         inputs:
@@ -44,6 +44,13 @@ stages:
           command: 'plan'
           workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
           environmentServiceNameAzureRM: 'practice_23-12-25'
-
+      
+      - task: TerraformTask@5
+        displayName: apply
+        inputs:
+          provider: 'azurerm'
+          command: 'apply'
+          workingDirectory: '$(System.DefaultWorkingDirectory)\enviornment\dev'
+          environmentServiceNameAzureRM: 'practice_23-12-25'
 
   
