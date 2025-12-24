@@ -30,6 +30,10 @@ stages:
           backendAzureRmContainerName: 'terraformstate'
           backendAzureRmKey: 'terraform.tfstate'
 
+      - script: 'tflint --recursive /f junit > tflint-report.xml'
+        displayName: linting
+        workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
+
       - task: TerraformTask@5
         displayName: validate      
         inputs:
@@ -45,6 +49,7 @@ stages:
           workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
           environmentServiceNameAzureRM: 'practice_23-12-25'
       
+
       - task: TerraformTask@5
         displayName: apply
         inputs:
