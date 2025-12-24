@@ -25,8 +25,16 @@ stages:
           exit /b 0
         displayName: Terraform linting
         workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
+      - task: InfracostSetup@2
+        inputs:
+          apiKey: 'ico-FnnkwnKY7yAIwhZUPbiN1WdDjymPmHed'
+          version: '0.10.x'
 
-      
+      - script: |
+          infracost breakdown --path .
+          exit /b 0
+        displayName: Terraform infracost
+        workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'      
 
       - task: TerraformTask@5
         displayName: init
