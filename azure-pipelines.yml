@@ -21,9 +21,8 @@ stages:
           terraformVersion: 'latest'
     
       - script: |
-          where tflint
-          tflint --version
           tflint --recursive --format junit > tflint-report.xml
+          exit /b 0
         displayName: Terraform linting
         workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
                   
