@@ -25,7 +25,7 @@ stages:
           tflint --version
           tflint --recursive --format junit > tflint-report.xml
         displayName: Terraform linting
-        workingDirectory: '$(System.DefaultWorkingDirectory)/environments/dev'
+        workingDirectory: '$(System.DefaultWorkingDirectory)\environments\dev'
                   
       - task: TerraformTask@5
         displayName: init
